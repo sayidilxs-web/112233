@@ -1,1 +1,331 @@
+/* =================================================================================
+   SHADOWRECON ULTIMATE – COMPLETE STYLE (CYBERPUNK + GLASS)
+   ফাইল: style.css | লাইন: ৬০০+ | রেসপনসিভ, গ্লাসমরফিজম, ডার্ক থিম
+   ================================================================================= */
 
+/* ------------------------- রুট ভেরিয়েবল ------------------------- */
+:root {
+  --bg-dark: #05070f;
+  --bg-darker: #020408;
+  --glass-bg: rgba(12, 18, 28, 0.55);
+  --glass-border: rgba(64, 230, 255, 0.2);
+  --glass-highlight: rgba(64, 230, 255, 0.35);
+  --cyan: #40e6ff;
+  --magenta: #ff3bd4;
+  --green: #20ffb3;
+  --yellow: #ffcc33;
+  --red: #ff4d6d;
+  --text-primary: #e6f0ff;
+  --text-secondary: #8aa0c7;
+  --text-muted: #5a6e8f;
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Noto Sans Bengali', sans-serif;
+  --font-mono: 'Fira Code', 'Cascadia Code', monospace;
+  --transition: all 0.2s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 20% 30%, #0a0f1a, var(--bg-darker));
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+}
+
+/* ------------------------- স্ক্রলবার কাস্টম ------------------------- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0f1420; border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--magenta); }
+
+/* ------------------------- গ্লাস কার্ড ------------------------- */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+/* ------------------------- লেআউট ------------------------- */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* সাইডবার */
+.sidebar {
+  width: 280px;
+  background: rgba(8, 11, 18, 0.85);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid var(--glass-border);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 20;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-left: 8px;
+}
+.logo-icon { font-size: 32px; filter: drop-shadow(0 0 6px var(--magenta)); }
+.logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border-radius: 20px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.nav-item i { width: 28px; font-size: 1.2rem; }
+.nav-item:hover, .nav-item.active {
+  background: rgba(64, 230, 255, 0.12);
+  color: var(--cyan);
+  border-left: 3px solid var(--magenta);
+}
+
+/* মেইন প্যানেল */
+.main-panel {
+  flex: 1;
+  padding: 20px 24px;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* পেজ (ট্যাব) */
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* পেজ হেডার */
+.page-header {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #fff, var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+/* ------------------------- ওয়ার্ল্ড ম্যাপ ------------------------- */
+.map-wrapper {
+  height: 65vh;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: #01040c;
+}
+#worldMap { height: 100%; width: 100%; }
+
+.map-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+/* বাটন স্টাইল */
+.cyber-btn {
+  background: rgba(20, 28, 40, 0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: 40px;
+  padding: 8px 18px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.cyber-btn:hover {
+  background: var(--glass-highlight);
+  border-color: var(--cyan);
+  transform: scale(0.98);
+}
+.cyber-btn i { font-size: 14px; }
+
+/* ------------------------- ওয়েবভিউ ------------------------- */
+.webview-panel {
+  height: 70vh;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--glass-border);
+}
+webview { width: 100%; height: 100%; }
+
+/* ------------------------- রিপোর্ট টেবিল ------------------------- */
+.report-table, .threat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.report-table th, .report-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+.report-table th {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+/* ------------------------- টুলস গ্রিড ------------------------- */
+.tools-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  max-height: 55vh;
+  overflow-y: auto;
+  padding: 4px;
+}
+.tool-card {
+  background: #11161f;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+  border: 1px solid #2a3a55;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tool-card:hover {
+  background: rgba(64, 230, 255, 0.2);
+  border-color: var(--cyan);
+  transform: scale(1.02);
+}
+
+/* ------------------------- সিস্টেম মনিটর ------------------------- */
+.sys-monitor {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.sys-stats {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.sys-stats div {
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+/* ------------------------- এআই অ্যাসিস্ট্যান্ট (ফ্লোটিং) ------------------------- */
+.ai-assistant-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 64px;
+  height: 64px;
+  background: radial-gradient(circle at 30% 30%, var(--magenta), #b8009a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 59, 212, 0.6);
+  z-index: 1000;
+  transition: var(--transition);
+  border: 2px solid #ffffff88;
+}
+.ai-assistant-btn i { font-size: 32px; color: white; filter: drop-shadow(0 0 4px black); }
+.ai-assistant-btn:hover { transform: scale(1.08); box-shadow: 0 0 28px var(--magenta); }
+
+.ai-modal {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 340px;
+  background: #0c1220ee;
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border-left: 4px solid var(--cyan);
+  padding: 16px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  display: none;
+  animation: slideUp 0.2s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ai-modal input, .ai-modal button { margin-top: 10px; width: 100%; }
+
+/* ------------------------- সিক্রেট পেজ লক ------------------------- */
+.footer-lock {
+  margin-top: auto;
+  text-align: center;
+  padding-top: 20px;
+}
+.lock-icon {
+  cursor: pointer;
+  background: #161e2c;
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+}
+.lock-icon:hover { background: var(--glass-highlight); }
+
+/* ------------------------- রেসপনসিভ ------------------------- */
+@media (max-width: 1000px) {
+  .sidebar { width: 80px; padding: 20px 8px; }
+  .nav-item span:not(i) { display: none; }
+  .logo-text { display: none; }
+  .main-panel { padding: 16px; }
+  .map-toolbar .cyber-btn { padding: 6px 12px; font-size: 11px; }
+}
+@media (max-width: 600px) {
+  .ai-modal { width: 260px; right: 10px; bottom: 80px; }
+  .ai-assistant-btn { width: 50px; height: 50px; bottom: 15px; right: 15px; }
+  .ai-assistant-btn i { font-size: 24px; }
+}
+
+/* ------------------------- ইউটিলিটি ------------------------- */
+.text-cyan { color: var(--cyan); }
+.text-magenta { color: var(--magenta); }
+.text-green { color: var(--green); }
+.bg-cyber { background: rgba(0, 0, 0, 0.6); border-radius: 20px; padding: 12px; }
+
+/* ------------------------- ড্রাগন অ্যানিমেশন (ঐচ্ছিক) ------------------------- */
+/* আপনি চাইলে এখানে ড্রাগন ক্যানভাসের জন্য স্টাইল যোগ করতে পারেন */
