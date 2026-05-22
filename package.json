@@ -14,10 +14,11 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron .",
-    "build": "electron-builder",
-    "build:win": "electron-builder --win portable",
-    "pack": "electron-builder --dir",
-    "clean": "rimraf dist node_modules"
+    "clean": "rimraf dist node_modules package-lock.json",
+    "reinstall": "npm install",
+    "build": "electron-builder --win",
+    "build:portable": "electron-builder --win portable",
+    "pack": "electron-builder --dir"
   },
 
   "dependencies": {
@@ -31,7 +32,7 @@
   },
 
   "devDependencies": {
-    "electron": "^31.0.2",
+    "electron": "^31.7.7",
     "electron-builder": "^24.13.3",
     "rimraf": "^5.0.7"
   },
@@ -41,26 +42,29 @@
     "productName": "ShadowRecon Ultimate",
 
     "directories": {
-      "output": "dist"
+      "output": "dist",
+      "buildResources": "build"
     },
 
     "files": [
       "**/*",
       "!dist/**/*",
-      "!node_modules/.cache/**/*"
+      "!node_modules/.cache/**/*",
+      "!**/*.map"
     ],
 
     "asar": true,
+
+    "compression": "normal",
 
     "win": {
       "target": [
         {
           "target": "portable",
-          "arch": [
-            "x64"
-          ]
+          "arch": ["x64"]
         }
-      ]
+      ],
+      "icon": "build/icon.ico"
     }
   }
 }
