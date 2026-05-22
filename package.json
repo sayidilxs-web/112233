@@ -2,7 +2,7 @@
   "name": "shadowrecon-ultimate",
   "productName": "ShadowRecon Ultimate",
   "version": "7.7.7",
-  "description": "World's largest penetration testing framework with 20,000+ tools, AI assistant, 7 pages, live map, and unlimited power.",
+  "description": "Advanced cyber research and monitoring platform.",
   "main": "main.js",
   "author": {
     "name": "ShadowRecon Labs",
@@ -10,6 +10,7 @@
   },
   "license": "MIT",
   "private": true,
+
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
@@ -17,48 +18,73 @@
     "build:linux": "electron-builder --linux",
     "build:mac": "electron-builder --mac",
     "pack": "electron-builder --dir",
-    "clean": "rimraf dist/ reports/ logs/ tools/ captures/ node_modules/.cache"
+    "clean": "rimraf dist reports logs tools captures"
   },
+
   "dependencies": {
     "adm-zip": "^0.5.16",
+    "archiver": "^7.0.1",
     "axios": "^1.7.9",
-    "@nut-tree/nut-js": "^4.2.0",
+    "extract-zip": "^2.0.1",
+    "node-notifier": "^10.0.1",
     "screenshot-desktop": "^1.15.0",
     "tesseract.js": "^5.1.0",
-    "node-notifier": "^10.0.1",
-    "archiver": "^7.0.1",
-    "extract-zip": "^2.0.1"
+    "@nut-tree/nut-js": "^3.1.1"
   },
+
   "devDependencies": {
-    "electron": "^42.2.0",
-    "electron-builder": "^26.8.1",
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3",
     "rimraf": "^6.0.1"
   },
+
   "build": {
     "appId": "com.shadowrecon.ultimate",
     "productName": "ShadowRecon Ultimate",
+
     "directories": {
       "output": "dist"
     },
+
     "files": [
       "**/*",
       "!dist/**",
       "!reports/**",
       "!logs/**",
       "!tools/**",
-      "!captures/**",
-      "!node_modules/.cache/**"
+      "!captures/**"
     ],
+
     "asar": true,
+
     "win": {
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ],
       "icon": "assets/icon.ico"
     },
+
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Development",
+      "icon": "assets/icon.png"
+    },
+
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.developer-tools"
+    },
+
     "nsis": {
       "oneClick": false,
       "perMachine": true,
@@ -66,16 +92,6 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "ShadowRecon Ultimate"
-    },
-    "linux": {
-      "target": ["AppImage"],
-      "category": "Development",
-      "icon": "assets/icon.png"
-    },
-    "mac": {
-      "target": ["dmg"],
-      "icon": "assets/icon.icns",
-      "category": "public.app-category.developer-tools"
     }
   }
 }
