@@ -22,7 +22,7 @@
   "dependencies": {
     "adm-zip": "^0.5.16",
     "axios": "^1.7.9",
-    "robotjs": "^0.6.0",
+    "@nut-tree/nut-js": "^4.2.0",
     "screenshot-desktop": "^1.15.0",
     "tesseract.js": "^5.1.0",
     "node-notifier": "^10.0.1",
